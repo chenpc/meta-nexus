@@ -11,24 +11,32 @@ inherit cargo_bin cargo-update-recipe-crates systemd
 # SRC_URI += "crate://crates.io/storage-daemon/0.1.0"
 SRC_URI = "git://github.com/chenpc/storage-daemon.git;protocol=https;branch=master \
         git://github.com/chenpc/libnexus.git;protocol=https;branch=master;name=libnexus;destsuffix=libnexus;type=git-dependency \
-        file://storage-daemon.service"
-SRCREV = "7056e4bc9c5d90b4a5af3a0e856b04f7a22b7d9a"
+        file://storage-daemon.service \
+        file://nexus-test.service \
+        "
+SRCREV = "d2ebad3aec0db0293edfb20688552e8c1676b9df"
 
 SRCREV_FORMAT .= "_libnexus"
-SRCREV_libnexus = "13de53b3698289eba57ef5436a46bab015b8df97"
+SRCREV_libnexus = "3f48f11db1380eefc362d93487212abb88e6c9f0"
 do_compile[network] = "1"
 
 do_install:append() {
     install -d ${D}${systemd_system_unitdir}
     install -m 0644 ${WORKDIR}/storage-daemon.service ${D}${systemd_system_unitdir}/
+    install -m 0644 ${WORKDIR}/nexus-test.service ${D}${systemd_system_unitdir}/
 }
 
 S = "${WORKDIR}/git"
 
 DEPENDS = "protobuf-native"
 
-SYSTEMD_PACKAGES = "storage-daemon"
+PACKAGES =+ "nexus-test"
+FILES:nexus-test = "${bindir}/nexus-test ${systemd_system_unitdir}/nexus-test.service"
+
+SYSTEMD_PACKAGES = "${PN} nexus-test"
 SYSTEMD_SERVICE:${PN} = "storage-daemon.service"
+SYSTEMD_SERVICE:nexus-test = "nexus-test.service"
+SYSTEMD_AUTO_ENABLE:nexus-test ?= "disable"
 FILES:${PN} += "${systemd_system_unitdir}/storage-daemon.service"
 
 

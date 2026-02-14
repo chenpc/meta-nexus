@@ -1,0 +1,13 @@
+[Unit]
+Description=Run nexus-test and power off
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c '/usr/bin/nexus-test; echo "TEST_EXIT_CODE=$?"; poweroff'
+StandardOutput=journal+console
+StandardError=journal+console
+SyslogIdentifier=nexus-test
+
+[Install]
+WantedBy=multi-user.target
