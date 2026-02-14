@@ -1,0 +1,8 @@
+[Unit]
+Description=VirtioFS for development
+After=network.service
+
+[Service]
+ExecStart=/bin/mount -t virtiofs myfs /root
+[Install]
+WantedBy=multi-user.target

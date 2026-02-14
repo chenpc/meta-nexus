@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/storage-daemon
+ExecStart=/usr/bin/storage-daemon [::]:9000
 Restart=on-failure
 RestartSec=5
 

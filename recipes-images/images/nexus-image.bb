@@ -5,6 +5,8 @@ inherit core-image
 
 IMAGE_INSTALL:append = " \
     storage-daemon \
+    devfs \
+    util-linux-lsblk \
 "
 
 IMAGE_FEATURES += "ssh-server-openssh"
