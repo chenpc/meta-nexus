@@ -14,10 +14,10 @@ SRC_URI = "git://github.com/chenpc/storage-daemon.git;protocol=https;branch=mast
         file://storage-daemon.service \
         file://nexus-test.service \
         "
-SRCREV = "d2ebad3aec0db0293edfb20688552e8c1676b9df"
+SRCREV = "b9262b300edcd3647659d0b5598868deb9301cef"
 
 SRCREV_FORMAT .= "_libnexus"
-SRCREV_libnexus = "3f48f11db1380eefc362d93487212abb88e6c9f0"
+SRCREV_libnexus = "880e4665aaccb327d8289bc39235dca007d161f4"
 do_compile[network] = "1"
 
 do_install:append() {

@@ -6,6 +6,7 @@ inherit core-image
 IMAGE_INSTALL:append = " \
     storage-daemon \
     devfs \
+    zfs \
     util-linux-lsblk \
 "
 
