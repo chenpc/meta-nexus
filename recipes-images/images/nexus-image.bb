@@ -5,8 +5,10 @@ inherit core-image
 
 IMAGE_INSTALL:append = " \
     storage-daemon \
+    nexus-web \
     devfs \
     zfs \
+    samba \
     util-linux-lsblk \
 "
 
