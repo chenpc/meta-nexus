@@ -25,6 +25,10 @@ do_fix_samba() {
 include = /etc/samba/shares/*.conf
 EOF
     mkdir -p ${IMAGE_ROOTFS}/etc/samba/shares/
+
+    # Set up samba password for root
+    mkdir -p ${IMAGE_ROOTFS}/var/lib/samba/private/
+    echo -e "admin\nadmin" | chroot ${IMAGE_ROOTFS} smbpasswd -a root -s || true
 }
 ROOTFS_POSTPROCESS_COMMAND += "do_fix_samba;"
 
