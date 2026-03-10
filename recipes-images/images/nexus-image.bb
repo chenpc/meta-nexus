@@ -2,9 +2,12 @@ SUMMARY = "Nexus Test Image"
 DESCRIPTION = "Minimal image with storage-daemon and integration tests for QEMU testing"
 
 inherit core-image
-inherit extrausers
 
-EXTRA_USERS_PARAMS = "usermod -P admin root;"
+set_root_password () {
+    echo "root:admin" | chpasswd -R ${IMAGE_ROOTFS}
+}
+ROOTFS_POSTPROCESS_COMMAND += "set_root_password; "
+
 
 IMAGE_INSTALL:append = " \
     storage-daemon \
