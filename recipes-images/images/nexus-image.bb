@@ -8,6 +8,26 @@ set_root_password () {
 }
 ROOTFS_POSTPROCESS_COMMAND += "set_root_password; "
 
+do_fix_samba() {
+    cat > ${IMAGE_ROOTFS}/etc/samba/smb.conf << 'EOF'
+[global]
+   workgroup = NEXUS
+   server string = Nexus NAS
+   security = user
+   map to guest = bad user
+   restrict anonymous = 0
+   passdb backend = tdbsam
+   log level = 1
+   max log size = 1000
+   dns proxy = no
+   load printers = no
+
+include = /etc/samba/shares/*.conf
+EOF
+    mkdir -p ${IMAGE_ROOTFS}/etc/samba/shares/
+}
+ROOTFS_POSTPROCESS_COMMAND += "do_fix_samba;"
+
 
 IMAGE_INSTALL:append = " \
     storage-daemon \
