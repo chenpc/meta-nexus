@@ -2,6 +2,9 @@ SUMMARY = "Nexus Test Image"
 DESCRIPTION = "Minimal image with storage-daemon and integration tests for QEMU testing"
 
 inherit core-image
+inherit extrausers
+
+EXTRA_USERS_PARAMS = "usermod -P admin root;"
 
 IMAGE_INSTALL:append = " \
     storage-daemon \
