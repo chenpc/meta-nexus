@@ -14,7 +14,7 @@ SRC_URI = "git://github.com/chenpc/storage-daemon.git;protocol=https;branch=mast
         file://storage-daemon.service \
         file://nexus-test.service \
         "
-SRCREV = "7b7aef676750768c914a7201c6ba22ffca85308a"
+SRCREV = "b719afdc598dc692195d0b82ac131025988b2d80"
 
 SRCREV_FORMAT .= "_libnexus"
 SRCREV_libnexus = "880e4665aaccb327d8289bc39235dca007d161f4"
