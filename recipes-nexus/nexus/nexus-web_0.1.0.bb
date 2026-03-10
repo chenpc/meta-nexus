@@ -6,10 +6,10 @@ inherit cargo_bin cargo-update-recipe-crates systemd
 
 # Git-based source
 SRC_URI = "git://github.com/chenpc/nexus-nas.git;protocol=https;branch=master \
-        git://github.com/chenpc/libnexus.git;protocol=https;branch=master;name=libnexus;destsuffix=libnexus;type=git-dependency \
+        git://github.com/chenpc/libnexus.git;protocol=https;branch=master;name=libnexus;destsuffix=git/libnexus;type=git-dependency \
         file://nexus-web.service \
         "
-SRCREV = "b88b4f38e69eb7feffeadffa15ca1bc4cc8920b6"
+SRCREV = "c733d1956fdfd30fe61643fbcfc1837c0f7e1dce"
 
 SRCREV_FORMAT .= "_libnexus"
 SRCREV_libnexus = "880e4665aaccb327d8289bc39235dca007d161f4"
