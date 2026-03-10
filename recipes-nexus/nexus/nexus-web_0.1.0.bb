@@ -9,7 +9,7 @@ SRC_URI = "git://github.com/chenpc/nexus-nas.git;protocol=https;branch=main \
         git://github.com/chenpc/libnexus.git;protocol=https;branch=master;name=libnexus;destsuffix=libnexus;type=git-dependency \
         file://nexus-web.service \
         "
-SRCREV = "72b5841688198d1d2fc3e37c0e443082759b74d9"
+SRCREV = "b88b4f38e69eb7feffeadffa15ca1bc4cc8920b6"
 
 SRCREV_FORMAT .= "_libnexus"
 SRCREV_libnexus = "880e4665aaccb327d8289bc39235dca007d161f4"
