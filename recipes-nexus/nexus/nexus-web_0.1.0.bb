@@ -5,7 +5,7 @@ EDITION="2024"
 inherit cargo_bin cargo-update-recipe-crates systemd
 
 # Git-based source
-SRC_URI = "git://github.com/chenpc/nexus-nas.git;protocol=https;branch=main \
+SRC_URI = "git://github.com/chenpc/nexus-nas.git;protocol=https;branch=master \
         git://github.com/chenpc/libnexus.git;protocol=https;branch=master;name=libnexus;destsuffix=libnexus;type=git-dependency \
         file://nexus-web.service \
         "
