@@ -16,7 +16,7 @@ SRCREV_libnexus = "880e4665aaccb327d8289bc39235dca007d161f4"
 do_compile[network] = "1"
 
 # Cargo workspace setup
-CARGO_BUILD_FLAGS += "--manifest-path=${S}/nexus-web/Cargo.toml"
+CARGO_BUILD_FLAGS += "-p nexus-web"
 
 do_install:append() {
     install -d ${D}${systemd_system_unitdir}
