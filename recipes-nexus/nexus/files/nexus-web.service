@@ -4,9 +4,13 @@ After=network.target storage-daemon.service
 Requires=storage-daemon.service
 
 [Service]
-ExecStart=/usr/bin/nexus-web 0.0.0.0:8080 http://[::1]:9000
+User=nexus-web
+Group=storage-daemon
+ExecStartPre=+/bin/sh -c 'test -f /etc/nexus/cert.pem || (mkdir -p /etc/nexus && openssl req -x509 -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 -keyout /etc/nexus/key.pem -out /etc/nexus/cert.pem -days 3650 -nodes -subj "/CN=Nexus NAS" 2>/dev/null && chmod 644 /etc/nexus/cert.pem && chmod 640 /etc/nexus/key.pem && chgrp storage-daemon /etc/nexus/key.pem)'
+ExecStart=/usr/bin/nexus-web 0.0.0.0:8443 /tmp/storage-daemon.sock
 Restart=on-failure
 RestartSec=5
+AmbientCapabilities=CAP_DAC_READ_SEARCH
 
 [Install]
 WantedBy=multi-user.target

@@ -4,7 +4,8 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/storage-daemon [::]:9000
+ExecStart=/usr/bin/storage-daemon /tmp/storage-daemon.sock
+ExecStartPost=/bin/sh -c 'sleep 0.5 && chgrp storage-daemon /tmp/storage-daemon.sock && chmod 660 /tmp/storage-daemon.sock'
 Restart=on-failure
 RestartSec=5
 

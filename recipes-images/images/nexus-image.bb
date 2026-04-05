@@ -40,6 +40,8 @@ IMAGE_INSTALL:append = " \
     zfs \
     samba \
     util-linux-lsblk \
+    avahi-daemon \
+    avahi-utils \
 "
 
 IMAGE_FEATURES += "ssh-server-openssh"

@@ -2,7 +2,7 @@ SUMMARY = "Nexus Web UI"
 HOMEPAGE = "https://github.com/chenpc/nexus-nas"
 LICENSE = "CLOSED"
 EDITION="2024"
-inherit cargo_bin cargo-update-recipe-crates systemd
+inherit cargo_bin cargo-update-recipe-crates systemd useradd
 
 # Git-based source
 SRC_URI = "git://github.com/chenpc/nexus-nas.git;protocol=https;branch=master \
@@ -25,9 +25,14 @@ do_install:append() {
 
 S = "${WORKDIR}/git"
 
-DEPENDS = "protobuf-native"
+DEPENDS = "protobuf-native openssl"
 
 SYSTEMD_SERVICE:${PN} = "nexus-web.service"
+
+# Create nexus-web user in storage-daemon group for socket access
+USERADD_PACKAGES = "${PN}"
+GROUPADD_PARAM:${PN} = "-r storage-daemon"
+USERADD_PARAM:${PN} = "-r -s /bin/false -g storage-daemon nexus-web"
 FILES:${PN} += "${systemd_system_unitdir}/nexus-web.service"
 
 # Include crates file if it exists
